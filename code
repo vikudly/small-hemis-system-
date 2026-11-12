@@ -1,0 +1,71 @@
+logpar = {
+    "talaba":{
+        "student1": "student123",
+        "student2": "student1234"
+    },
+
+    "ustoz":{
+        "teacher1": "teacher123",
+        "teacher2": "teacher1234"
+    },
+
+    "dekan":{
+        "dekan1": "dekan123",
+        "dekan2":"dekan1234"
+    }
+}
+
+talabalar = []
+while True:
+    status = input("\n1) talaba \n2) ustoz \n3) dekan \nstatusingizni kiriting = ")
+
+    if status in logpar:
+        login = input("loginni kiriting = ")
+        parol = input("parolni kiriting = ")
+        if login in logpar[status]:
+            if logpar[status][login] == parol:
+                print(f"Hush kelibsiz, {login}")
+            else:
+                print("login yoki parol xato!")
+                break
+        else:
+            print("bunday login mavjud emas!\ndastur to'xtatildi")
+            break
+    else:
+        print("Kechirasiz, bunday status mavjud emas \ndatur tugatildi")
+        break
+
+    if status == "ustoz" or status == "talaba":
+        javob = input("siz faqat ma'lumotlarni ko'raolasiz \nma'lumotlarni ko'rmoqchimisiz?(ha/yuq)")
+        if javob == "ha":
+            if len(talabalar) == 0:
+                print("hozircha datamiz bo'm-bo'sh")
+            else:
+                for talaba in talabalar:
+                    for k,v in talaba.items():
+                        print(f"{k}: {v.title()}")
+    elif status == "dekan":
+        print("siz quyidagilarni bajara olasiz:")
+        print("1 - ma'lumotlarni ko'rish\n2 - ma'lumot qo'shish\n3 - ma'lumotlarni o'chirish\nma'lumotlarni yangilash")
+        javob = input("amaliyot raqamini kiriting = ")
+        if javob == "1":
+            if len(talabalar) == 0:
+                print("hozircha datamiz bo'm-bo'sh")
+            else:
+                for talaba in talabalar:
+                    for k,v in talaba.items():
+                        print(f"{k}: {v.title()}")
+        elif javob == "2":
+            name = input("talaba ismini kiriting = ")
+            fname = input("talaba familiyasini kiriting = ")
+            age = input("talaba yoshini kiriting = ")
+
+            talaba = {
+                "ism": name,
+                "familiya": fname,
+                "yosh": age
+            }
+
+            talabalar.append(talaba)
+        elif javob == "3":
+            talabalar.clear()
